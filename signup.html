@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Capture Connecticut</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    body { background: #fff; color: #111; }
+    .signup-hero {
+      background: #111;
+      color: #fff;
+      padding: 4rem 0 2rem 0;
+      text-align: center;
+    }
+    .signup-form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 40vh;
+    }
+    .signup-form {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 350px;
+      text-align: left;
+      border: 1.5px solid #111;
+    }
+    .signup-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .signup-form input {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1.2rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .signup-btn {
+      width: 100%;
+      background: #111;
+      color: #fff;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .signup-btn:hover {
+      background: #444;
+    }
+    .signup-footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    .switch-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #111;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .switch-link:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+    .split-layout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+    }
+    .signup-photo-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .signup-profile-photo {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #111;
+      background: #eee;
+    }
+    .signup-form-col {
+      flex: 1;
+      min-width: 320px;
+    }
+    @media (max-width: 700px) {
+      .split-layout {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .signup-form-col {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-flex">
+      <img src="images/logo.png" alt="Capture Connecticut Logo" class="logo">
+      <nav>
+        <a href="index.html#about">About</a>
+        <a href="services.html">Services</a>
+        <a href="services.html">Find a Photographer</a>
+        <a href="create-listing.html">Post a Listing</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+  <section class="signup-hero">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Create your Capture Connecticut creator account</p>
+    </div>
+  </section>
+  <div class="signup-form-container split-layout">
+    <div class="signup-photo-col">
+      <img src="images/default-profile.png" alt="Your profile photo" class="signup-profile-photo">
+    </div>
+    <div class="signup-form-col">
+      <form class="signup-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit" class="signup-btn">Sign Up</button>
+        <a href="login.html" class="switch-link">Already have an account? Login</a>
+      </form>
+    </div>
+  </div>
+  <div class="signup-footer">
+    <p>&copy; 2025 Capture Connecticut. All rights reserved.</p>
+  </div>
+</body>
+</html>

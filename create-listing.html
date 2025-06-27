@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Listing | Capture Connecticut</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    body { background: #fff; color: #111; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1.5px solid #111;
+      width: 100%;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2vw;
+    }
+    .header-inner {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      min-width: 120px;
+    }
+    .header-logo img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      margin-left: auto;
+    }
+    .header-nav a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: border-bottom 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+    }
+    .header-nav a:hover {
+      border-bottom: 2px solid #111;
+    }
+    @media (max-width: 900px) {
+      .header-inner { max-width: 98vw; }
+      .header-nav { gap: 1.2rem; }
+    }
+    @media (max-width: 700px) {
+      .site-header { min-height: 54px; padding: 0 1vw; }
+      .header-logo img { height: 30px; }
+      .header-nav { gap: 0.7rem; font-size: 0.97rem; }
+    }
+    .listing-hero {
+      background: #111;
+      color: #fff;
+      padding: 4rem 0 2rem 0;
+      text-align: center;
+    }
+    .listing-form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 40vh;
+    }
+    .listing-form {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: left;
+      border: 1.5px solid #111;
+    }
+    .listing-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .listing-form input, .listing-form textarea, .listing-form select {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1.2rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .listing-form textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .listing-btn {
+      width: 100%;
+      background: #111;
+      color: #fff;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .listing-btn:hover {
+      background: #444;
+    }
+    .listing-footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #888;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="index.html"><img src="images/logo.png" alt="Capture Connecticut Logo"></a>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html#about">About</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="services.html">Find a Photographer</a>
+      </nav>
+    </div>
+  </header>
+  <section class="listing-hero">
+    <div class="container">
+      <h1>Post a Listing</h1>
+      <p>Share your photography service with the Capture Connecticut community</p>
+    </div>
+  </section>
+  <div class="listing-form-container">
+    <form class="listing-form">
+      <label for="title">Listing Title</label>
+      <input type="text" id="title" name="title" required>
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">Select a category</option>
+        <option value="sports">Sports</option>
+        <option value="portraits">Portraits</option>
+        <option value="events">Events</option>
+        <option value="family">Family</option>
+        <option value="creative">Creative</option>
+      </select>
+      <label for="price">Price (USD)</label>
+      <input type="number" id="price" name="price" min="0" required>
+      <label for="description">Description</label>
+      <textarea id="description" name="description" required></textarea>
+      <label for="image">Image (optional)</label>
+      <input type="file" id="image" name="image" accept="image/*">
+      <button type="submit" class="listing-btn">Post Listing</button>
+    </form>
+  </div>
+  <div class="listing-footer">
+    <p>&copy; 2025 Capture Connecticut. All rights reserved.</p>
+  </div>
+</body>
+</html>

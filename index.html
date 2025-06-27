@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capture Connecticut</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    body { background: #fff; color: #111; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1.5px solid #111;
+      width: 100%;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2vw;
+    }
+    .header-inner {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      min-width: 120px;
+    }
+    .header-logo img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      margin-left: auto;
+    }
+    .header-nav a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: border-bottom 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+    }
+    .header-nav a:hover {
+      border-bottom: 2px solid #111;
+    }
+    @media (max-width: 900px) {
+      .header-inner { max-width: 98vw; }
+      .header-nav { gap: 1.2rem; }
+    }
+    @media (max-width: 700px) {
+      .site-header { min-height: 54px; padding: 0 1vw; }
+      .header-logo img { height: 30px; }
+      .header-nav { gap: 0.7rem; font-size: 0.97rem; }
+    }
+    .hero { background: #111; color: #fff; padding: 7rem 0 6rem 0; text-align: center; }
+    .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .hero p { font-size: 1.5rem; margin-bottom: 2.5rem; }
+    .cta-btn { background: #fff; color: #111; padding: 1.2rem 3rem; border-radius: 30px; font-size: 1.3rem; font-weight: 700; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: background 0.2s, color 0.2s; border: 2px solid #111; }
+    .cta-btn:hover { background: #111; color: #fff; }
+    .home-section { background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); padding: 4rem 0 2rem 0; margin: 3rem auto; width: 90%; max-width: 1200px; text-align: center; }
+    .home-section h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; color: #111; }
+    .home-section p { font-size: 1.1rem; color: #444; }
+    .footer { background: #111; color: #fff; text-align: center; padding: 2rem 0 1rem 0; font-size: 1rem; border-radius: 0 0 16px 16px; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="index.html"><img src="images/logo.png" alt="Capture Connecticut Logo"></a>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html#about">About</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="services.html">Find a Photographer</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <h1>Capture Connecticut</h1>
+    <p>Connecticut's Premier Photography Collective</p>
+    <a href="services.html" class="cta-btn">Book a Photographer</a>
+  </section>
+  <section class="home-section" id="about">
+    <h2>About Us</h2>
+    <p>We are a collective of passionate photographers capturing the energy, emotion, and unforgettable moments from all walks of life across Connecticut. Our team delivers professional, creative, and community-driven results for every client—whether it's sports, portraits, events, or more.</p>
+  </section>
+  <section class="home-section" id="services">
+    <h2>Our Services</h2>
+    <p>Sports Photography &bull; Portraits &bull; Event Coverage &bull; Team & Athlete Portraits &bull; Highlight Videos &bull; Family & Senior Photos &bull; Creative Shoots</p>
+  </section>
+  <section class="home-section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:captureconnecticut@gmail.com">captureconnecticut@gmail.com</a></p>
+    <p>Instagram: <a href="https://instagram.com/capture.connecticut" target="_blank">@capture.connecticut</a></p>
+  </section>
+  <footer class="footer">
+    <p>&copy; 2025 Capture Connecticut. All rights reserved.</p>
+  </footer>
+</body>
+</html>
