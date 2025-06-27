@@ -193,12 +193,20 @@
   <main class="contact-main">
     <section class="contact-form-section">
       <h2>Send Us a Message</h2>
-      <form class="contact-form" action="https://formspree.io/f/mdkzyzge" method="POST" autocomplete="off">
+ <form class="contact-form" action="https://formspree.io/f/mdkzyzge" method="POST" autocomplete="off">
   <label for="name">Name</label>
   <input type="text" id="name" name="name" required>
 
   <label for="email">Email</label>
   <input type="email" id="email" name="email" required>
+
+  <label for="photographer">Who would you like to book?</label>
+  <select id="photographer" name="photographer" required>
+    <option value="" disabled selected>Select a photographer</option>
+    <option value="Eddie Thomas">@et4.visuals (Eddie Thomas)</option>
+    <option value="medski_productions">@medski_productions</option>
+    <!-- Add more options here as needed -->
+  </select>
 
   <label for="message">Message</label>
   <textarea id="message" name="message" required></textarea>
