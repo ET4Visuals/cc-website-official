@@ -26,12 +26,93 @@
 </head>
 <body>
   <h1>Book a Photographer</h1>
-  <p>Ready to capture your next big moment? Book a professional photographer in Connecticut!</p>
+  <p>Ready to capture your next big moment? Book a professional sports photographer in Connecticut!</p>
   <hr>
-  <h2>📍 Our Coverage Area</h2>
-  <img class="map" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Connecticut_in_United_States.svg" alt="Map of Connecticut">
-  <p><em>We cover events across the entire state!</em></p>
-  <hr>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Photographer Map | ET4 Visuals</title>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    .container { display: flex; height: 100vh; }
+    .sidebar { width: 30%; padding: 1rem; overflow-y: scroll; border-right: 1px solid #ccc; background: #f9f9f9; }
+    .photographer { display: block; text-decoration: none; color: #333; padding: 0.75rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid #ddd; transition: background 0.2s; }
+    .photographer:hover { background-color: #eaeaea; }
+    .map { flex-grow: 1; }
+    .profile-page { padding: 2rem; font-family: sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const photographers = {
+      "eddie-thomas": {
+        name: "Eddie Thomas",
+        location: "Connecticut, USA",
+        coords: [41.6032, -73.0877],
+        price: "$200/session",
+        bio: "Eddie specializes in fast-paced football and sports photography. He's known for capturing peak moments with cinematic clarity."
+      },
+      "jane-doe": {
+        name: "Jane Doe",
+        location: "Berlin, Germany",
+        coords: [52.52, 13.405],
+        price: "$180/session",
+        bio: "Jane is a documentary-style photographer focusing on urban sports and street culture."
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const app = document.getElementById("app");
+
+    if (id && photographers[id]) {
+      const p = photographers[id];
+      app.innerHTML = `
+        <div class="profile-page">
+          <h1>${p.name}</h1>
+          <p><strong>Location:</strong> ${p.location}</p>
+          <p><strong>Price:</strong> ${p.price}</p>
+          <p>${p.bio}</p>
+          <a href="index.html" style="color: blue;">← Back to map</a>
+        </div>
+      `;
+    } else {
+      app.innerHTML = `
+        <div class="container">
+          <div class="sidebar">
+            <h2>Our Photographers</h2>
+            ${Object.entries(photographers).map(([key, p]) => `
+              <a class="photographer" href="?id=${key}">
+                <h3>${p.name}</h3>
+                <p>${p.location} — ${p.price}</p>
+              </a>
+            `).join('')}
+          </div>
+          <div class="map" id="map"></div>
+        </div>
+      `;
+
+      const map = L.map('map').setView([20, 0], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      Object.values(photographers).forEach(p => {
+        L.marker(p.coords)
+          .addTo(map)
+          .bindPopup(`<b>${p.name}</b><br>${p.price}`);
+      });
+    }
+  </script>
+</body>
+</html>
+
   <h2>How to Book</h2>
   <ul>
     <li>Send us a DM on <a href="https://instagram.com/capture.connecticut" target="_blank">Instagram</a></li>

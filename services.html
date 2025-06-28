@@ -1,129 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Find a Photographer | Capture Connecticut</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
-    body { background: #fff; color: #111; }
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #fff;
-      border-bottom: 1.5px solid #111;
-      width: 100%;
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 2vw;
-    }
-    .header-inner {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-    }
-    .header-logo {
-      display: flex;
-      align-items: center;
-      min-width: 120px;
-    }
-    .header-logo img {
-      height: 38px;
-      width: auto;
-      display: block;
-    }
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 2.2rem;
-      margin-left: auto;
-    }
-    .header-nav a {
-      color: #111;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: border-bottom 0.2s;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 2px;
-    }
-    .header-nav a:hover {
-      border-bottom: 2px solid #111;
-    }
-    @media (max-width: 900px) {
-      .header-inner { max-width: 98vw; }
-      .header-nav { gap: 1.2rem; }
-    }
-    @media (max-width: 700px) {
-      .site-header { min-height: 54px; padding: 0 1vw; }
-      .header-logo img { height: 30px; }
-      .header-nav { gap: 0.7rem; font-size: 0.97rem; }
-    }
-    .services-hero {
-      background: #111;
-      color: #fff;
-      padding: 4rem 0 2rem 0;
-      text-align: center;
-    }
-    .services-listing {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      justify-content: center;
-      margin: 3rem 0;
-    }
+    body { background: #fff; color: #111; font-family: 'Montserrat', sans-serif; margin: 0; }
+    .site-header { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1.5px solid #111; width: 100%; min-height: 64px; display: flex; align-items: center; justify-content: center; padding: 0 2vw; }
+    .header-inner { width: 100%; max-width: 1200px; display: flex; align-items: center; justify-content: space-between; }
+    .header-logo img { height: 38px; }
+    .header-nav { display: flex; gap: 2.2rem; margin-left: auto; }
+    .header-nav a { color: #111; text-decoration: none; font-weight: 500; font-size: 1rem; border-bottom: 2px solid transparent; padding-bottom: 2px; }
+    .header-nav a:hover { border-bottom: 2px solid #111; }
+
+    .services-hero { background: #111; color: #fff; padding: 4rem 1rem 2rem; text-align: center; }
+
+    .services-map-section { display: flex; flex-wrap: wrap; height: 80vh; }
+    .services-listing { width: 100%; max-width: 400px; overflow-y: scroll; padding: 1.5rem; border-right: 1px solid #ccc; }
+    .map-container { flex-grow: 1; min-height: 100%; }
+
     .service-card {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      width: 300px;
-      transition: box-shadow 0.2s;
       border: 1.5px solid #111;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: 0.2s;
     }
     .service-card:hover {
       box-shadow: 0 4px 16px rgba(0,0,0,0.13);
     }
-    .service-photo {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-      border: 3px solid #111;
-    }
     .service-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
-    .service-price {
-      color: #111;
-      font-weight: 700;
-      margin-bottom: 1rem;
+    .specialties-tags {
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+      color: #333;
     }
     .service-contact {
       display: inline-block;
+      margin-top: 0.7rem;
       background: #111;
       color: #fff;
-      padding: 0.5em 1.5em;
+      padding: 0.4rem 1rem;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 1em;
       transition: background 0.2s;
     }
     .service-contact:hover {
       background: #444;
     }
+
+    .filter label { font-weight: 600; display: block; margin-top: 1rem; }
+    .filter select { width: 100%; padding: 0.4rem; font-size: 1rem; margin-top: 0.5rem; }
+    .filter button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #111;
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .filter button:hover {
+      background: #444;
+    }
+
+    #map { width: 100%; height: 100%; }
+    footer { text-align: center; padding: 2rem 1rem; font-size: 0.9rem; color: #555; }
   </style>
 </head>
 <body>
@@ -139,34 +94,132 @@
       </nav>
     </div>
   </header>
+
   <section class="services-hero">
     <div class="container">
       <h1>Find a Photographer</h1>
       <p>Browse our team and book the perfect photographer for your needs.</p>
     </div>
   </section>
-  <section class="section">
-    <div class="container">
-      <div class="services-listing">
-        <!-- Example photographer card -->
-        <div class="service-card">
-          <div class="service-title">@et4.visuals</div>
-          <div>Specialties: Sports, Portraits, Events</div>
-          <a href="book-et4.visuals.html" class="service-contact">Book with @et4.visuals</a>
-        </div>
-         <div class="service-card">
-          <div class="service-title">@Medski_Productions</div>
-          <div>Specialties: Sports</div>
-          <a href="book-Medski_Productions.html" class="service-contact">Book with @Medski_Productions</a>
-        </div>
-        <!-- Add more photographer cards here -->
+
+  <section class="services-map-section">
+    <div class="services-listing">
+      <div class="filter">
+        <label for="priceFilter">Filter by Price:</label>
+        <select id="priceFilter">
+          <option value="all">All Prices</option>
+          <option value="0-150">Under $100</option>
+          <option value="150-200">$100–$200</option>
+          <option value="200-9999">Over $200</option>
+        </select>
+
+        <label for="specialtySelect">Filter by Specialty:</label>
+        <select id="specialtySelect">
+          <option value="all">All Specialties</option>
+          <option value="Sports">Sports</option>
+          <option value="Portraits">Portraits</option>
+          <option value="Events">Events</option>
+          <option value="Senior Pics">Senior Pics</option>
+          <option value="Corporate Events">Corporate Events</option>
+          <option value="Weddings">Weddings</option>
+          <option value="Family">Family</option>
+        </select>
+
+        <button id="searchBtn">Search</button>
+
+        <h2 style="margin-top: 2rem; font-weight: 700;">Our Team</h2>
       </div>
+      <div id="photographer-list"></div>
+    </div>
+
+    <div class="map-container">
+      <div id="map"></div>
     </div>
   </section>
-  <footer class="footer">
+
+  <footer>
     <div class="container">
       <p>&copy; 2025 Capture Connecticut. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    const photographers = [
+      {
+        id: "et4.visuals",
+        name: "@et4.visuals",
+        specialties: ["Sports", "Portraits", "Events", "Weddings"],
+        price: "$100–150/session",
+        numericPrice: 150,
+        location: "West Haven, CT",
+        link: "book-et4.visuals.html",
+        coords: [41.2724, -72.9498]
+      },
+      {
+        id: "medski_productions",
+        name: "@Medski_Productions",
+        specialties: ["Sports", "Corporate Events"],
+        price: "$180/session",
+        numericPrice: 180,
+        location: "New Haven, CT",
+        link: "book-Medski_Productions.html",
+        coords: [41.3083, -72.9279]
+      }
+      // Add more photographers here
+    ];
+
+    const listDiv = document.getElementById("photographer-list");
+    const priceFilter = document.getElementById("priceFilter");
+    const specialtySelect = document.getElementById("specialtySelect");
+    const searchBtn = document.getElementById("searchBtn");
+
+    let map = L.map('map').setView([41.5, -72.7], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let markers = [];
+
+    function renderPhotographers(filtered) {
+      listDiv.innerHTML = '';
+      markers.forEach(marker => map.removeLayer(marker));
+      markers = [];
+
+      filtered.forEach(p => {
+        const tagLine = p.specialties.join(" | ");
+        listDiv.innerHTML += `
+          <div class="service-card">
+            <div class="service-title">${p.name}</div>
+            <div class="specialties-tags">${tagLine}</div>
+            <div>Location: ${p.location}</div>
+            <div>Rate: ${p.price}</div>
+            <a href="${p.link}" class="service-contact">Book with ${p.name}</a>
+          </div>
+        `;
+
+        const marker = L.marker(p.coords)
+          .addTo(map)
+          .bindPopup(`<b>${p.name}</b><br>${p.price}<br>${p.location}`);
+        markers.push(marker);
+      });
+    }
+
+    function filterPhotographers() {
+      const priceVal = priceFilter.value;
+      const [min, max] = priceVal === "all" ? [0, Infinity] : priceVal.split("-").map(Number);
+      const selectedSpecialty = specialtySelect.value;
+
+      const filtered = photographers.filter(p => {
+        const priceMatch = p.numericPrice >= min && p.numericPrice <= max;
+        const specialtyMatch = selectedSpecialty === "all" || p.specialties.includes(selectedSpecialty);
+        return priceMatch && specialtyMatch;
+      });
+
+      renderPhotographers(filtered);
+    }
+
+    // Trigger filter on search button click
+    searchBtn.addEventListener("click", filterPhotographers);
+  </script>
 </body>
 </html>
